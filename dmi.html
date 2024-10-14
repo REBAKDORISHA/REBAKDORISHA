@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMI College</title>
+
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #65cee8;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 50px 0;
+        }
+
+        #home {
+            background-color: #f4f4f4;
+        }
+
+        #about, #courses {
+            background-color: #fff;
+        }
+
+        h2 {
+            text-align: center;
+            color: #6ac7e1;
+        }
+
+        p {
+            text-align: center;
+            line-height: 1.6;
+            margin: 0 auto;
+            width: 60%;
+        }
+
+        .courses-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding-top: 20px;
+        }
+
+        .course-item {
+            background-color: #0becf0;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #65cee3;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        /* Chatbot Styles */
+        .chat-container {
+            width: 400px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            margin: 20px auto;
+        }
+
+        .chat-header {
+            background-color: #a4efdc;
+            padding: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        .chat-box {
+            padding: 15px;
+            height: 300px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .input-box {
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-box button {
+            padding: 10px;
+            background-color: #5ebdcc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .input-box button:hover {
+            background-color: #62c4dc;
+        }
+
+        .message {
+            margin: 10px 0;
+        }
+
+        .user-message {
+            text-align: right;
+            color: blue;
+        }
+
+        .bot-message {
+            text-align: left;
+            color: rgb(80, 190, 223);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>DMI College</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="container">
+            <h2>Welcome to DMI College</h2>
+            <p>Providing quality education and shaping the future of our students.</p>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>DMI College has been a center for academic excellence and student development, fostering knowledge and skills for a bright future.</p>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses">
+        <div class="container">
+            <h2>Our Courses</h2>
+            <div class="courses-list">
+                <div class="course-item">
+                    <h3>Engineering</h3>
+                    <p>Explore our comprehensive engineering programs.</p>
+                </div>
+                <div class="course-item">
+                    <h3>Business</h3>
+                    <p>Our business courses equip you with the tools to succeed.</p>
+                </div>
+                <div class="course-item">
+                    <h3>Science</h3>
+                    <p>Join our science courses and unlock your potential.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Email: info@dmicollege.edu | Phone: +123 456 7890</p>
+        </div>
+    </section>
+
+    <!-- Chatbot Section -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>DMI College Chatbot</h2>
+        </div>
+        <div class="chat-box" id="chat-box"></div>
+        <div class="input-box">
+            <input type="text" id="user-input" placeholder="Ask me anything about DMI College..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 DMI College. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+
+        const responses = {
+            "hello": "Hello! How can I help you with DMI College information today?",
+            "courses": "We offer courses in Engineering like cse, it, ec and mech",
+            "admissions": "Admissions are now open!",
+            "facilities": "We provide top-notch facilities including hostels, library, sports, and labs.",
+            "contact": "You can contact us at +91-1234567890 or email us at info@dmicollege.ac.in.",
+            "location": "DMI College is located in kanniyakumari, Tamil Nadu, India.",
+        };
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const userText = userInput.value.toLowerCase().trim();
+            if (userText === "") return;
+
+            displayMessage(userText, "user-message");
+            userInput.value = "";
+
+            setTimeout(() => {
+                displayMessage(getBotResponse(userText), "bot-message");
+            }, 500);
+        }
+
+        function getBotResponse(input) {
+            return responses[input] || "Sorry, I didn't understand that. Please ask something else about DMI College.";
+        }
+
+        function displayMessage(text, className) {
+            const message = document.createElement('div');
+            message.classList.add('message', className);
+            message.textContent = text;
+            chatBox.appendChild(message);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
